@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="header">
+    <div class="search">
+        <form class="search-form" action="" method="get">
+            <input value="{{ city }}" placeholder="Начните вводить название города" id="input_city" type="text" list="suggestions" autocomplete="off">
+            <input id="coords" type="hidden" name="coords">
+            <input id="city" type="hidden" name="city">
+            <datalist id="suggestions" role="listbox"></datalist>
+            <button type="image" id="search_btn">
+                <img src="{% static 'backend/icons/search.png' %}" alt="Image Alt Text">
+            </button>
+            <!-- <input id="search_btn" type="image" src="{% static 'backend/icons/search.png' %}"> -->
+        </form>
+        
+    </div>
+    <div class="weather">
+        {% if weather %}
+            {% for w in weather %}
+                <div class="weather-card">
+                    <p class="center top">{{ w.0|date:'H:i' }}</p>
+                    <p class="center top">{{ w.1|floatformat:0 }}°</p>
+                    <p class="split bot"><span>Влажность:</span><span class="right">{{ w.2|floatformat:0 }}%</span></p>
+                    <p class="split bot"><span>Вероят. осадков:</span><span class="right">{{ w.3|floatformat:0 }}%</span></p>
+                    <p class="split bot"><span>Давление:</span><span class="right">{{ w.5|floatformat:0 }} Па</span></p>
+                    <p class="split bot"><span>Скорость ветра: </span><span class="right">{{ w.6|floatformat:1 }} м/с</span></p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}
