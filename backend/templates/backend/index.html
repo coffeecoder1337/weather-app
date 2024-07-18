@@ -6,10 +6,13 @@
 <div class="header">
     <div class="search">
         <form class="search-form" action="" method="get">
-            <input value="{{ city }}" placeholder="Начните вводить название города" id="input_city" type="text" list="suggestions" autocomplete="off">
+            <div class="search-wrapper">
+                <input role="combobox" value="{{ city }}" placeholder="Начните вводить название города" id="input_city" type="text" list="" autocomplete="off">
+                <datalist name="suggestions" id="suggestions" role="listbox"></datalist>
+            </div>
             <input id="coords" type="hidden" name="coords">
             <input id="city" type="hidden" name="city">
-            <datalist id="suggestions" role="listbox"></datalist>
+            
             <button type="image" id="search_btn">
                 <img src="{% static 'backend/icons/search.png' %}" alt="Image Alt Text">
             </button>
